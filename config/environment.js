@@ -6,6 +6,29 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    // set to true when on the staging host
+    staging: process.env.STAGING || false,
+    fastboot: {
+      hostWhitelist: [/^(w+\.)?aliencyb.org$/, /^localhost:\d+$/]
+    },
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        // environments: ['development', 'production'],
+        environments: ['production'],
+        config: {
+          id: 'UA-135499270-1',
+          // Use `analytics_debug.js` in development
+          debug: environment === 'development',
+          // Use verbose tracing of GA events
+          trace: environment === 'development',
+          // Ensure development env hits aren't sent to GA
+          sendHitTask: environment !== 'development'
+          // Specify Google Analytics plugins
+          // require: ['ecommerce']
+        }
+      }
+    ],
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -20,6 +43,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    DS: {
+      host: process.env.API_HOST || 'http://localhost:3000'
     }
   }
 
