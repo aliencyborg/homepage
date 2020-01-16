@@ -8,3 +8,7 @@
 
 /* Get my Typekit Fonts */
 @import url("https://use.typekit.net/tar5rbi.css");
+@font-face {
+  font-family: bayshore;
+  src: url('/assets/fonts/Bayshore.otf');
+}
