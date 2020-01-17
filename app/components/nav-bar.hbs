@@ -1,10 +1,30 @@
 <div class="flex items-center justify-between flex-wrap border-pink-600
-  border-b-2">
-  <div class="flex flex-shrink-0 content-center items-center mr-6">
-    <LinkTo @route="index">
+  border-b-4 bg-indigo-300 font-serif">
+  <div class="flex flex-1 content-center items-center mr-0 mt-1">
+    <LinkTo @route="home">
       <img src="assets/images/logo-v5.png" alt="aliencyborg logo"
         class="h-20">
     </LinkTo>
   </div>
-  {{yield}}
+  <div class="lg:hidden font-title flex-1 text-4xl text-center">
+    <LinkTo @route="home">AlienCyborg</LinkTo>
+  </div>
+  <div class="block lg:hidden flex flex-1 justify-end">
+    <button class="flex items-center mr-2 my-1 px-3 py-2 border
+      border-pink-600 hover:text-blue-600 hover:border-white"
+      {{on "click" this.toggle}}>
+      {{inline-svg "assets/svg/menu" class="fill-current h-3 w-3"}}
+    </button>
+  </div>
+  <div class="relative w-full block flex-grow lg:flex lg:items-center lg:w-auto
+    text-xl sm:text-2xl md:text-3xl">
+    <button class="absolute w-full bg-indigo-300 pb-4 border-pink-600 border-b-4
+      opacity-85 lg:opacity-100 lg:border-none lg:pb-0 lg:flex lg:flex-grow
+      lg:justify-around {{this.menuClass}}" {{on "click" this.toggle}}>
+      <NavBarLink @route="about">About</NavBarLink>
+      <NavBarLink @route="contact">Contact Us</NavBarLink>
+      <NavBarLink @route="portfolio">Portfolio</NavBarLink>
+      <NavBarLink @route="pricing">Pricing</NavBarLink>
+    </button>
+  </div>
 </div>
