@@ -13,10 +13,7 @@ const purgeCSS = {
       './app/templates/**/*.hbs',
       './app/styles/components.css'
     ],
-    whitelist: [
-      // Be sure to whitelist any class names that come from javascript or
-      // are otherwise programatically set, or they will vanish in production.
-    ],
+    whitelist: ['hidden', 'h-screen', 'min-h-screen'],
     defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
   }
 }
