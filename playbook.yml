@@ -1,0 +1,82 @@
+---
+- name: web application deploy
+  hosts: west
+  remote_user: hank
+  vars:
+    workdir: /home/hank/code/src/github.com/aliencyborg/aliencyborg-web
+  tasks:
+    - name: ensure workdir directory is present
+      file:
+        path: /home/hank/code/src/github.com/aliencyborg
+        state: directory
+      tags: [ prod, stage ]
+
+    ## STAGE ##
+
+    - name: clone or update aliencyborg-web repository (stage)
+      git:
+        accept_hostkey: yes
+        dest: "{{ workdir }}"
+        key_file: /home/hank/.ssh/id_rsa
+        repo: 'git@github.com:aliencyborg/homepage.git'
+        update: yes
+        version: stage
+      tags: stage
+
+    - name: build docker image (stage)
+      docker_image:
+        force_source: yes
+        name: aliencyborg-web
+        source: build
+        tag: stage
+        build:
+          path: "{{ workdir }}"
+          pull: no
+      tags: stage
+
+    - name: run docker container (stage)
+      docker_container:
+        expose: 80
+        image: aliencyborg-web:stage
+        name: aliencyborg-stage-web
+        state: started
+        env:
+          LETSENCRYPT_HOST: 'preview.aliencyb.org,www.preview.aliencyb.org'
+          PORT: '80'
+          VIRTUAL_HOST: 'preview.aliencyb.org,www.preview.aliencyb.org'
+      tags: stage
+
+    ## PRODUCTION ##
+
+    - name: clone or update aliencyborg-web repository (prod)
+      git:
+        accept_hostkey: yes
+        dest: "{{ workdir }}"
+        key_file: /home/hank/.ssh/id_rsa
+        repo: 'git@github.com:aliencyborg/homepage.git'
+        update: yes
+        version: prod
+      tags: prod
+
+    - name: build docker image (prod)
+      docker_image:
+        force_source: yes
+        name: aliencyborg-web
+        source: build
+        tag: prod
+        build:
+          path: "{{ workdir }}"
+          pull: no
+      tags: prod
+
+    - name: run docker container (prod)
+      docker_container:
+        expose: 80
+        image: aliencyborg-web:prod
+        name: aliencyborg-web
+        state: started
+        env:
+          LETSENCRYPT_HOST: 'aliencyb.org,www.aliencyb.org'
+          PORT: '80'
+          VIRTUAL_HOST: 'aliencyb.org,www.aliencyb.org'
+      tags: prod
