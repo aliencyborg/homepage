@@ -41,6 +41,7 @@
         name: aliencyborg-stage-web
         state: started
         env:
+          HSTS: 'off'
           LETSENCRYPT_HOST: 'preview.aliencyb.org,www.preview.aliencyb.org'
           PORT: '80'
           VIRTUAL_HOST: 'preview.aliencyb.org,www.preview.aliencyb.org'
@@ -76,7 +77,9 @@
         name: aliencyborg-web
         state: started
         env:
+          HSTS: 'off'
           LETSENCRYPT_HOST: 'aliencyb.org,www.aliencyb.org'
           PORT: '80'
           VIRTUAL_HOST: 'aliencyb.org,www.aliencyb.org'
       tags: prod
+
