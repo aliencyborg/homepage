@@ -17,14 +17,15 @@
     </button>
   </div>
   <div class="relative w-full block flex-grow lg:flex lg:items-center lg:w-auto
-    text-xl sm:text-2xl md:text-3xl">
+    text-xl sm:text-2xl md:text-3xl z-10">
     <button class="absolute w-full bg-indigo-300 pb-4 border-pink-600 border-b-4
-      opacity-85 lg:opacity-100 lg:border-none lg:pb-0 lg:flex lg:flex-grow
+      opacity-90 lg:opacity-100 lg:border-none lg:pb-0 lg:flex lg:flex-grow
       lg:justify-around {{this.menuClass}}" {{on "click" this.toggle}}>
-      <NavBarLink @route="about">About</NavBarLink>
+      {{!-- <NavBarLink @route="about">About</NavBarLink> --}}
       <NavBarLink @route="contact">Contact Us</NavBarLink>
-      <NavBarLink @route="gallery">Gallery</NavBarLink>
+      {{!-- <NavBarLink @route="gallery">Gallery</NavBarLink> --}}
       <NavBarLink @route="pricing">Pricing</NavBarLink>
+      <NavBarLink @route="services">Services</NavBarLink>
     </button>
   </div>
 </div>
