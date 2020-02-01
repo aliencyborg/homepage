@@ -9,7 +9,11 @@ module.exports = function(environment) {
     // set to true when on the staging host
     staging: process.env.STAGING || false,
     fastboot: {
-      hostWhitelist: [/^(w+\.)?aliencyb.org$/, /^localhost:\d+$/]
+      hostWhitelist: [
+        /^preview.aliencyb.org$/,
+        /^(w+\.)?aliencyb.org$/,
+        /^localhost:\d+$/
+      ]
     },
     metricsAdapters: [
       {
