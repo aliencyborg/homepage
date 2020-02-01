@@ -2,12 +2,16 @@ FROM node:lts-alpine
 
 WORKDIR /usr/src/app
 
-RUN apk update
-RUN apk add git
-RUN npm install -g --silent ember-cli
+RUN apk add --no-cache --virtual build-deps \
+  g++ \
+  git \
+  make \
+  python
 
+RUN npm install -g --silent ember-cli
 COPY package*.json ./
 RUN npm ci --silent
+RUN apk del build-deps
 
 COPY . .
 
