@@ -42,9 +42,9 @@
         state: started
         env:
           HSTS: 'off'
-          LETSENCRYPT_HOST: 'preview.aliencyb.org'
+          LETSENCRYPT_HOST: 'stage.aliencyb.org'
           PORT: '80'
-          VIRTUAL_HOST: 'preview.aliencyb.org'
+          VIRTUAL_HOST: 'stage.aliencyb.org'
       tags: stage
 
     ## PRODUCTION ##
