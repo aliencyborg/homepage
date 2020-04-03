@@ -18,7 +18,7 @@ const purgeCSS = {
   }
 }
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     // Add options here
     // https://github.com/chrism/emberjs-tailwind-purgecss
