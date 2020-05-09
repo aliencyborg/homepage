@@ -39,7 +39,7 @@
         expose: 80
         image: aliencyborg-web:stage
         name: aliencyborg-stage-web
-        state: started
+        restart_policy: always
         env:
           HSTS: 'off'
           LETSENCRYPT_HOST: 'stage.aliencyb.org'
@@ -75,7 +75,7 @@
         expose: 80
         image: aliencyborg-web:prod
         name: aliencyborg-web
-        state: started
+        restart_policy: always
         env:
           HSTS: 'off'
           LETSENCRYPT_HOST: 'aliencyb.org,www.aliencyb.org'
