@@ -2,6 +2,7 @@ import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
 import { render } from '@ember/test-helpers'
 import { hbs } from 'ember-cli-htmlbars'
+import { getTextParts } from 'aliencyborg/tests/helpers/text-helper'
 
 module('Integration | Component | nav-bar', function (hooks) {
   setupRenderingTest(hooks)
@@ -10,9 +11,11 @@ module('Integration | Component | nav-bar', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
+    const expected = ['AlienCyborg', 'Contact Us', 'Pricing', 'Services']
+
     await render(hbs`<NavBar />`)
 
-    assert.equal(this.element.textContent.trim(), '')
+    assert.deepEqual(getTextParts(this.element), expected)
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +24,6 @@ module('Integration | Component | nav-bar', function (hooks) {
       </NavBar>
     `)
 
-    assert.equal(this.element.textContent.trim(), 'template block text')
+    assert.deepEqual(getTextParts(this.element), expected)
   })
 })
