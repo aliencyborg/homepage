@@ -31,6 +31,13 @@ module.exports = function (environment) {
           // Specify Google Analytics plugins
           // require: ['ecommerce']
         }
+      },
+      {
+        name: 'HubSpot',
+        environments: ['production'],
+        config: {
+          id: '6976625'
+        }
       }
     ],
     EmberENV: {
