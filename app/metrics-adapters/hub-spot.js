@@ -16,7 +16,7 @@ export default BaseAdapter.extend({
     script.async = true
     script.defer = true
     script.id = 'hs-script-loader'
-    script.src = `http://js.hs-scripts.com/${hubSpotID}.js`
+    script.src = `//js.hs-scripts.com/${hubSpotID}.js`
 
     document.body.appendChild(script)
   },
@@ -30,6 +30,10 @@ export default BaseAdapter.extend({
   alias() {},
 
   willDestroy() {
+    if (typeof document === 'undefined') {
+      return // fastboot-safe
+    }
+
     const script = document.getElementById('hs-script-loader')
 
     document.body.removeChild(script)
