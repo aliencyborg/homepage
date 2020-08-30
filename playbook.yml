@@ -1,24 +1,26 @@
 ---
 - name: web application deploy
-  hosts: west
-  remote_user: hank
+  hosts: east
+  remote_user: luis
   vars:
-    workdir: /home/hank/code/src/github.com/aliencyborg/aliencyborg-web
+    homedir: "/home/{{ user }}"
+    org: aliencyborg
+    repo: homepage
+    user: luis
+    workdir: "{{ homedir }}/code/src/github.com/{{ org }}/{{ repo }}"
   tasks:
-    - name: ensure workdir directory is present
+    - name: ensure workdir parent dir is present
       file:
-        path: /home/hank/code/src/github.com/aliencyborg
+        path: "{{ homedir }}/code/src/github.com/{{ org }}"
         state: directory
       tags: [ prod, stage ]
 
     ## STAGE ##
 
-    - name: clone or update aliencyborg-web repository (stage)
+    - name: clone or update repo (stage)
       git:
-        accept_hostkey: yes
         dest: "{{ workdir }}"
-        key_file: /home/hank/.ssh/id_rsa
-        repo: 'git@github.com:aliencyborg/homepage.git'
+        repo: "https://github.com/{{ org }}/{{ repo }}.git"
         update: yes
         version: stage
       tags: stage
@@ -49,12 +51,10 @@
 
     ## PRODUCTION ##
 
-    - name: clone or update aliencyborg-web repository (prod)
+    - name: clone or update repo (prod)
       git:
-        accept_hostkey: yes
         dest: "{{ workdir }}"
-        key_file: /home/hank/.ssh/id_rsa
-        repo: 'git@github.com:aliencyborg/homepage.git'
+        repo: "https://github.com/{{ org }}/{{ repo }}.git"
         update: yes
         version: prod
       tags: prod
