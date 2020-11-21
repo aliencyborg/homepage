@@ -1,0 +1,24 @@
+{{!--
+  Add content you wish automatically added to the documents head
+  here. The 'model' available in this template can be populated by
+  setting values on the 'head-data' service.
+--}}
+
+<title>{{this.model.fullTitle}}</title>
+<link rel="canonical" href="{{this.model.url}}" />
+
+<meta name="og:site_name" property="og:site_name" content="AlienCyborg, LLC" />
+<meta name="og:title" property="og:title" content="{{this.model.fullTitle}}" />
+<meta name="og:url" property="og:url" content="{{this.model.url}}" />
+<meta name="og:type" property="og:type" content="website" />
+
+<meta name="name" itemprop="name" content="{{this.model.fullTitle}}" />
+<meta name="url" itemprop="url" content="{{this.model.url}}" />
+
+<meta name="twitter:title" content="{{this.model.title}}" />
+<meta name="twitter:url" content="{{this.model.url}}" />
+<meta name="twitter:card" content="{{this.model.card}}" />
+
+<meta name="description" content="AlienCyborg is a scrappy team of website
+    builders with a futuristic vision of amazing online experiences. Need a
+    website built or repaired? Say hello@aliencyb.org.">
