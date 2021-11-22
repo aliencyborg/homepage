@@ -1,12 +1,12 @@
 ---
 - name: web application deploy
-  hosts: east
-  remote_user: luis
+  hosts: west
+  remote_user: hank
   vars:
     homedir: "/home/{{ user }}"
     org: aliencyborg
     repo: homepage
-    user: luis
+    user: hank
     workdir: "{{ homedir }}/code/src/github.com/{{ org }}/{{ repo }}"
   tasks:
     - name: ensure workdir parent dir is present
