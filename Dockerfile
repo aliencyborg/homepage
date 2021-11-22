@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:erbium-alpine
 
 WORKDIR /usr/src/app
 
@@ -6,11 +6,11 @@ RUN apk add --no-cache --virtual build-deps \
   g++ \
   git \
   make \
-  python
+  python3
 
 RUN npm install -g --silent ember-cli
 COPY package*.json ./
-RUN npm ci --silent
+RUN npm ci
 RUN apk del build-deps
 
 COPY . .
